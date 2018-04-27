@@ -56,6 +56,6 @@ public class MainTest {
         timerTasks.setSets(sets);
         Timer timer= new Timer();
 
-        timer.schedule(timerTasks,1000,1000);
+        timer.schedule(timerTasks,0,1000);//0=startNow
     }
 }
