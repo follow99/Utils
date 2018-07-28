@@ -35,8 +35,6 @@ public class Converter {
 
 
     /***
-     *
-     * overloaded 多参方法
      * 用于 循环内读取到的Object 或者 数组 或者 网络文件读取 需要指定 生成类名 在下边文件中会注释出来
      * @param filePath 文件路径
      * @param name  文件名字
@@ -47,17 +45,16 @@ public class Converter {
     }
 
     /***
-     *
+     * 用于读取本地json文件 本地文件使用 文件名作为初始类名 所以无需指定
      * @param filePath
-     * @param inputTypes
      * @throws IOException
      */
-    public void convert(String filePath, InputTypes inputTypes) throws IOException {
-        convert(filePath, inputTypes, "");
+    public void convert(String filePath) throws IOException {
+        convert(filePath, InputTypes.ISFILE, "");
     }
 
     /***
-     *
+     *全参主方法
      * @param filePath
      * @param inputTypes
      * @param name
