@@ -1,4 +1,4 @@
-package com.bcg.json2javabean;
+package com.bcg.json2javabean.converters;
 
 /**
  * @author Administrator

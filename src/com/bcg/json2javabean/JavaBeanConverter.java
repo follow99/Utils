@@ -29,15 +29,15 @@ public interface JavaBeanConverter {
 
     /***
      * xml from local
-     * @param s
-     * @throws IOException
+     * @param filePath local xml path
+     * @throws IOException IO异常
      */
-    void xmlFromFile(String s) throws IOException;
+    void xmlFromFile(String filePath) throws IOException;
 
     /***
      * xml from url
-     * @param url
-     * @param name
+     * @param url  url
+     * @param name Main java bean name
      * @throws IOException
      */
     void xmlFromUrl(String url, String name) throws IOException;

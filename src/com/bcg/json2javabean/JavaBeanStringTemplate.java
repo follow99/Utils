@@ -9,7 +9,8 @@ public interface JavaBeanStringTemplate {
 
     /***
      * 生成类文件的string 头
-     * @return AtomicReference<String> 生成类文件的string 头 默认头文件包含 lombok,spring boot-data-jpa 依赖
+     * @return AtomicReference<String> 生成类文件的string 头
+     * 默认头文件包含 lombok,spring boot-data-jpa 依赖引用
      */
     default AtomicReference<String> getBeanStringTemplate() {
         return new AtomicReference<>("import lombok.AllArgsConstructor;\n" +

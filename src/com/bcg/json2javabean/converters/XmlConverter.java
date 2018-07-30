@@ -1,9 +1,8 @@
-package com.bcg.json2javabean;
+package com.bcg.json2javabean.converters;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,19 +18,17 @@ public class XmlConverter {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    private JsonConverter jsonConverter= new JsonConverter();
-
-    private RestTemplate restTemplate= new RestTemplate();
+    private JsonConverter jsonConverter = new JsonConverter();
 
 
     public void xmlFromFile(String filePath) throws IOException {
 
         JsonNode jsonNode = xmlMapper.readTree(new File(filePath));
-        String fileName= Paths.get(filePath).getFileName().toString();
-        String firstFileName= fileName.substring(0,fileName.lastIndexOf("."));
+        String fileName = Paths.get(filePath).getFileName().toString();
+        String firstFileName = fileName.substring(0, fileName.lastIndexOf("."));
         String s = objectMapper.writeValueAsString(jsonNode);
 
-        jsonConverter.convert(s,firstFileName);
+        jsonConverter.convert(s, firstFileName);
 
     }
 
@@ -43,16 +40,7 @@ public class XmlConverter {
 
         String s = objectMapper.writeValueAsString(jsonNode);
 
-        jsonConverter.convert(s,fileName);
+        jsonConverter.convert(s, fileName);
     }
 
-
-    public static void main(String[] args) throws IOException {
-        XmlConverter xmlConverter= new XmlConverter();
-
-        String path="D:\\Users\\Administrator\\raesite\\src\\test\\testXml\\test.xml";
-        xmlConverter.xmlFromFile(path);
-        String url="";
-        xmlConverter.xmlFromURL("http://api.geoiplookup.net/?query=46.7.13.129","ipets");
-    }
 }

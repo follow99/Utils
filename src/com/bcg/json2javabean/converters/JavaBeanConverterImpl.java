@@ -1,5 +1,6 @@
-package com.bcg.json2javabean;
+package com.bcg.json2javabean.converters;
 
+import com.bcg.raesite.jsonconvert.JavaBeanConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;

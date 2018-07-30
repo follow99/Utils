@@ -1,4 +1,6 @@
-package com.bcg.json2javabean;
+package com.bcg.json2javabean.headingTemplates;
+
+import com.bcg.raesite.jsonconvert.JavaBeanStringTemplate;
 
 /**
  * 直接在接口类中写了默认实现

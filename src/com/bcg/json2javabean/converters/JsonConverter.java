@@ -1,5 +1,7 @@
-package com.bcg.json2javabean;
+package com.bcg.json2javabean.converters;
 
+import com.bcg.raesite.jsonconvert.JavaBeanStringTemplate;
+import com.bcg.raesite.jsonconvert.headingTemplates.LombokHeadingTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,6 +14,8 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @author Administrator
  * date 27/07/2018.
+ *
+ * 主逻辑实现类
  */
 public class JsonConverter {
 
@@ -41,11 +45,11 @@ public class JsonConverter {
      * overloaded 多参方法
      * 用于 循环内读取到的Object 或者 数组 或者 网络文件读取 需要指定 生成类名 在下边文件中会注释出来
      * @param fileString 文件路径
-     * @param name  文件名字
+     * @param beanName  文件名字
      * @throws IOException
      */
-    public void convert(String fileString, String name) throws IOException {
-        convert(fileString, InputTypes.ISTEXT, name);
+    public void convert(String fileString, String beanName) throws IOException {
+        convert(fileString, InputTypes.ISTEXT, beanName);
     }
 
     /***
@@ -100,20 +104,18 @@ public class JsonConverter {
 
                     String key = x.getKey();
 
-                    System.out.print("-------------->"+key);
-                    System.out.println("<<<<<<<<<<<<>>>>>>>>>>>>>>>>"+x.getValue().getNodeType());
+                    System.out.print("-------------->" + key);
+                    System.out.println("<<<<<<<<<<<<>>>>>>>>>>>>>>>>" + x.getValue().getNodeType());
 
-                    //todo 有些情况下 json 的 key 会为空 这种情况这条逻辑会报错
                     String keyType;
-                    if (key.length()>0){
-                        keyType=key.substring(0, 1).toUpperCase() +
+                    if (key.length() > 0) {
+                        keyType = key.substring(0, 1).toUpperCase() +
                                 key.substring(1, key.length());
 
-                    }else {
+                    } else {
 
-                        keyType="Missing_heading ";
+                        keyType = "Missing_heading ";
                     }
-
 
 
                     String nodeType = x.getValue().getClass().getSimpleName();
@@ -178,8 +180,12 @@ public class JsonConverter {
                             propertiesBuffer.append(stringBoolean);
                             break;
                         case "DoubleNode":
-                            String stringDouble = "  private Double " + key + ";\n";
+                            String stringDouble = "  private double " + key + ";\n";
                             propertiesBuffer.append(stringDouble);
+                            break;
+                        case "LongNode":
+                            String stringLong = "  private long " + key + ";\n";
+                            propertiesBuffer.append(stringLong);
                             break;
                         case "BigIntegerNode":
                             String stringBigInteger = "  private BigInteger " + key + ";\n";
@@ -230,8 +236,9 @@ public class JsonConverter {
 
         JsonNode jsonNode = objectMapper.readTree(metaString);
         String nodeType = jsonNode.getClass().getSimpleName();
+        String arrayNode = "ArrayNode";
 
-        if ("ArrayNode".equals(nodeType)) {
+        if (arrayNode.equals(nodeType)) {
 
             return jsonNode.get(0);
         }
@@ -239,10 +246,5 @@ public class JsonConverter {
         return jsonNode;
     }
 
-//    private String keyType(){
-//
-//
-//        return
-//    }
 
 }
