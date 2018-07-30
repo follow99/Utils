@@ -1,4 +1,4 @@
-从本地和网络中将Json 解析生成 Java Bean 的 小工具
+从本地和网络中将Json xml 解析并生成 Java Bean 的 小工具
 
 Json 解析依赖 Jackson  网络连接依赖 spring RestTemplate 
 
