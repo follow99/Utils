@@ -21,8 +21,6 @@ public class XmlConverter {
 
     private JsonConverter jsonConverter= new JsonConverter();
 
-    private RestTemplate restTemplate= new RestTemplate();
-
 
     public void xmlFromFile(String filePath) throws IOException {
 
@@ -46,13 +44,4 @@ public class XmlConverter {
         jsonConverter.convert(s,fileName);
     }
 
-
-    public static void main(String[] args) throws IOException {
-        XmlConverter xmlConverter= new XmlConverter();
-
-        String path="D:\\Users\\Administrator\\raesite\\src\\test\\testXml\\test.xml";
-        xmlConverter.xmlFromFile(path);
-        String url="";
-        xmlConverter.xmlFromURL("http://api.geoiplookup.net/?query=46.7.13.129","ipets");
-    }
 }
